@@ -84,19 +84,6 @@ public:
             }
 		}
 
-		float ymin = 222;
-		for (int i=0; i<v.size(); i++) {
-			if (v[i].y < ymin) {
-				ymin = v[i].y;
-			}
-		}
-
-		FILE *fp  = fopen("C:\\users\\flex\\Desktop\\b.obj", "w");
-
-		for (int i=0 ;i<v.size(); i++) {
-			fprintf(fp, "v %f %f %f\n", v[i].x-0.06f, v[i].y-0.06f, v[i].z	-0.06f);
-		}
-		fclose(fp);
 	}
 
 
