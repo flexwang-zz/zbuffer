@@ -11,8 +11,8 @@ public:
 	Triangle(){}
     Triangle(TriangleMesh* m,
              int v0, int v1, int v2,
-             int n0=0, int n1=0, int n2=0,
-             int t0=0, int t1=0): mesh(m) {
+             int n0=-1, int n1=-1, int n2=-1,
+             int t0=-1, int t1=-1, int t2=-1): mesh(m) {
 		v[0] = v0;
 		v[1] = v1;
 		v[2] = v2;
@@ -23,12 +23,13 @@ public:
 
         t[0] = t0;
         t[1] = t1;
+		t[2] = t2;
 	}
 
 	TriangleMesh *mesh;
 	int v[3];
     int n[3];
-    int t[2];
+    int t[3];
 };
 
 class TriangleMesh {
@@ -82,6 +83,16 @@ public:
                 }
                 f.push_back(Triangle(this, vv[0]-1, vv[1]-1, vv[2]-1, nn[0]-1, nn[1]-1, nn[2]-1));
             }
+			else if (countOfSlash == 6){ //text-cord are supplied
+                istringstream is(faceinfo);
+                int vv[3], nn[3], tt[3];
+
+                for (int j=0; j<3; j++) {
+                    is >> vv[j] >> nn[j] >> tt[j];
+                }
+                f.push_back(Triangle(this, vv[0]-1, vv[1]-1, vv[2]-1, nn[0]-1, nn[1]-1, nn[2]-1,
+					tt[0]-1, tt[1]-1, tt[2]-1));
+			}
 		}
 
 	}
